@@ -26,103 +26,128 @@ public class ImagemGestor {
     public boolean valida() {
         return null != imagem;
     }
+
     public void binarizar(int limiar_tresh) {
-        for(int i =0; i < imagem.getWidth();i++)
-            for(int j =0; j < imagem.getHeight();j++){
-                int pixel = imagem.getRGB(i,j);
-                if(getBinario(pixel) > limiar_tresh)
+        for (int i = 0; i < imagem.getWidth(); i++) {
+            for (int j = 0; j < imagem.getHeight(); j++) {
+                int pixel = imagem.getRGB(i, j);
+                if (getBinario(pixel) > limiar_tresh) {
                     pixel = this.getBranco();
-                else
+                } else {
                     pixel = getPreto();
-                imagem.setRGB(i, j,pixel);
+                }
+                imagem.setRGB(i, j, pixel);
             }
+        }
     }
-    
+
     public void tons_de_cinza() {
         ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
         ColorConvertOp op = new ColorConvertOp(cs, null);
         imagem = op.filter(imagem, null);
 
     }
-    
 
     public void salvar() throws IOException {
-        if(imagem!= null){
+        if (imagem != null) {
             ImageIO.write(imagem, "jpg", arquivo_original);
         }
     }
 
     private int getBranco() {
         //return Alpha+Red+Green+Blue
-        return (255/*Blue*/ + 255*256/*Green*/+ 255*256*256/*Red*/+ 255*256*256*256/*Alpha*/+ 255*256*256*256);
+        return (255 << 24)
+             | (255 << 16)
+             | (255 << 8 )
+             | (255      );
     }
 
     private int getPreto() {
-        //return Alpha+Red+Green+Blue
-        return (0/*Blue*/ + 0*256/*Green*/+ 0*256*256/*Red*/+ 0*256*256*256/*Alpha*/+ 255*256*256*256);
+        return (255 << 24);
     }
 
-    private int getBinario(int pixel) {
-        if(pixel<0)
-            pixel = -pixel;
-        int r = 0;
-        for(int i=0;i<3;i++){
-            r    += pixel % 256;
-            pixel = pixel / 256;
-        }
-        if(r < 0)
-            r = -r;
-           
-        return r / 3;
+    private int getBinario(int color) {
+        int blue = color & 255;
+        int green = (color >> 8) & 255;
+        int red = (color >> 16) & 255;
+        return (blue + green + red) / 3;
     }
 
     public void converter_para_sepia() {
-        int c;
-        for(int i =0; i < imagem.getWidth();i++)
-            for(int j =0; j < imagem.getHeight();j++){
-                c = imagem.getRGB(i,j);
-                c = (getBinario(c));
-                c = (((255*256+c)*256+c)*256+c);
-                imagem.setRGB(i, j, c);
-            }
+
+        for (int i = 0; i < imagem.getWidth(); i++) {
+            for (int j = 0; j < imagem.getHeight(); j++) {
+                imagem.setRGB(i, j, filtro_sepia(imagem.getRGB(i, j)));
                 
-            
+            }
+        }
+
+
+    }
+    public void brilho(int brilho){
+        int br;
+        for (int i = 0; i < imagem.getWidth(); i++)
+            for (int j = 0; j < imagem.getHeight(); j++){
+                br = imagem.getRGB(i, j); 
+                br = brilho((br    )&255,brilho)     |
+                     brilho((br>> 8)&255,brilho)<<  8|
+                     brilho((br>>16)&255,brilho)<< 16|
+                     255                        << 24;
+                imagem.setRGB(i, j, br);
+            }
+        
+    }
+    public void contrast(float contraste){
+        int cr;
+        for (int i = 0; i < imagem.getWidth(); i++)
+            for (int j = 0; j < imagem.getHeight(); j++){
+                
+                cr = imagem.getRGB(i, j); 
+                cr = contrast((cr    )&255,contraste)     |
+                     contrast((cr>> 8)&255,contraste)<<  8|
+                     contrast((cr>>16)&255,contraste)<< 16|
+                     255                             << 24;
+                imagem.setRGB(i, j, cr);
+            }
+    }
+    
+    private int filtro_sepia(int color) {
+
+        int blue = color & 255;
+        int green = (color >> 8) & 255;
+        int red = (color >> 16) & 255;
+        
+        blue = red = green = (blue + red + green) / 3;
+        blue = contrast(blue, 0.75);
+        red = contrast(red, 1.2);
+        green = contrast(green, 1.03);
+
+        return (255 << 24)
+                | (red << 16)
+                | (green << 8)
+                | (blue);
     }
 
-    private int filtro_sepia(int color) {
-        int cor = color % 256;
-        
-        int res = 255;
-        if(cor<60){
-            Double f = (cor * 0.6);
-            cor = f.intValue();
-            if(cor<0)
-                cor=0;
-            res = (((res*256+cor)*256+cor)*256+cor);
-        }else if(cor < 190){
-            if(cor<0)
-                cor=0;
-            
-            Double f = (cor * 0.7);
-            
-            res = (((res*256+cor)*256+cor)*256+f.intValue());
-        }else{
-            Double f = (cor * 1.1);
-            Double f2 = (cor * 0.7);
-            cor = f.intValue();
-            if(cor > 255)
-                cor = 255;
-            else if(cor<0)
-                cor=0;
-            
-            res = (((res*256+cor)*256+cor)*256+ 0);
-            cor = f2.intValue();
-            if(cor > 255)
-                cor = 255;
-            else if(cor<0)
-                cor=0;
-            res += cor;
+    private int contrast(int cor, double valor) {
+        Double d = cor * valor;
+        cor = d.intValue();
+        if (cor > 255) {
+            cor = 255;
+        } else if (cor < 0) {
+            cor = 0;
         }
-        return res;
+        return cor;
+    }
+
+    private int brilho(int cor, int opt) {
+        if (cor + opt > 255) {
+            cor = 255;
+        } else if (cor + opt < 0) {
+            cor = 0;
+        } else {
+            cor += opt;
+        }
+        return cor;
+
     }
 }

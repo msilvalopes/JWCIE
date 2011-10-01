@@ -37,8 +37,40 @@ public class editar_arquivo extends HttpServlet {
         }
         
         Integer tresh = Utils.str_to_int((String)request.getParameter("toBeP"));
+        Integer brilho = Utils.str_to_int((String)request.getParameter("brilho"));
+        Float contraste = Utils.str_to_float((String)request.getParameter("contraste"));
         
-        if(tresh !=null){
+        if(contraste !=null){
+           DiretorioManager dir = new DiretorioManager(sessao.getUsuarioLogado().getLogin());
+            ImagemGestor imagem = new ImagemGestor(dir.getFile((String)request.getParameter("arquivo")));
+            if(imagem.valida()){
+                imagem.contrast(contraste);
+                imagem.salvar();
+                sessao.setAviso("Alterado o Contraste");
+                response.sendRedirect("/logado");
+                return;
+            }else{
+                sessao.setAviso("Falha na deteção do arquivo");
+                response.sendRedirect("/logado");
+                return;
+            }
+         
+        }else if(brilho !=null){
+           DiretorioManager dir = new DiretorioManager(sessao.getUsuarioLogado().getLogin());
+            ImagemGestor imagem = new ImagemGestor(dir.getFile((String)request.getParameter("arquivo")));
+            if(imagem.valida()){
+                imagem.brilho(brilho);
+                imagem.salvar();
+                sessao.setAviso("Alterado o Brilho");
+                response.sendRedirect("/logado");
+                return;
+            }else{
+                sessao.setAviso("Falha na deteção do arquivo");
+                response.sendRedirect("/logado");
+                return;
+            }
+         
+        }else if(tresh !=null){
             DiretorioManager dir = new DiretorioManager(sessao.getUsuarioLogado().getLogin());
             ImagemGestor imagem = new ImagemGestor(dir.getFile((String)request.getParameter("arquivo")));
             if(imagem.valida()){

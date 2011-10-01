@@ -19,5 +19,6 @@
             Senha: <input name="senha" type="password">
             <button type="submit">Logar</button>
         </form>
+        <a href="/recuperar_senha">Recuperar Senha</a>
     </body>
 </html>

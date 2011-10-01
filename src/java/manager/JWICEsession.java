@@ -33,6 +33,7 @@ public class JWICEsession {
                 session.setAttribute("mensagem","");
             }else{
                 resposta.sendRedirect("/");
+                
             }
         }else{
             String login = (String) session.getAttribute("login");

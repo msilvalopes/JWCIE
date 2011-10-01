@@ -4,15 +4,10 @@
  */
 package hibernate;
 
-import org.hibernate.cfg.Configuration;
 import org.hibernate.*;
-import java.util.Properties;
 import org.hibernate.criterion.Expression;
 import java.util.List;
 import java.util.regex.Pattern;
-//import java.util.List;  
-//import net.sf.hibernate.*;  
-//import net.sf.hibernate.cfg.Configuration; 
 import java.util.Vector;
 /**
  * Hibernate Utility class with a convenient method to get Session Factory object.
@@ -24,17 +19,17 @@ public class UsuariosDAO {
     private SessionFactory factory;
 
     public UsuariosDAO() {
-        Properties propriedades;
+        /*Properties propriedades;
         propriedades = new Properties();
         propriedades.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         propriedades.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
         propriedades.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/JWICE");
         propriedades.setProperty("hibernate.connection.username", "root");
         propriedades.setProperty("hibernate.connection.password", "");
-        //propriedades.setProperty("Usuarios.hbm.xml"/>
+        //propriedades.setProperty("Usuarios.hbm.xml"/>*/
         try{
-            factory = new Configuration().addProperties(propriedades).
-                          addClass(hibernate.Usuarios.class).buildSessionFactory();
+            factory = NewHibernateUtil.getSessionFactoryUser();
+        //.addClass(hibernate.Usuarios.class).buildSessionFactory();
         }catch(Exception e){
             e.getMessage();
             return;
@@ -68,6 +63,15 @@ public class UsuariosDAO {
             v.add("Digite seu nome completo");
         session.close();
         return v;
+    }
+    public List find_usuario_by_login(Usuarios usuario) {
+        Session session = factory.openSession();
+        List re = session.createCriteria(Usuarios.class).
+                add(Expression.eq("login", usuario.getLogin()))
+                .list();
+        session.close();
+        return re;
+        
     }
     public List is_usuario(Usuarios usuario) {
         Session session = factory.openSession();

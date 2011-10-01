@@ -1,4 +1,6 @@
 
+import hibernate.Logs;
+import hibernate.LogsDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,9 +29,9 @@ public class cadastro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         Usuarios usuario = new Usuarios();
         UsuariosDAO usuarioDAO = new UsuariosDAO();
+                
         if( ((String)request.getParameter("email")) == null ||
            ("".equals((String)request.getParameter("email")) ) ){
             request.setAttribute("erros","");
@@ -54,7 +56,14 @@ public class cadastro extends HttpServlet {
                 usuarioDAO.insert(usuario);
                 DiretorioManager dir = new DiretorioManager(usuario.getLogin());
                 dir.preparar();
+                LogsDAO logs = new LogsDAO();
+                Logs log = new Logs();
+                log.setDataNow();
+                log.setInfo("Add User: ".concat(usuario.getLogin()));
+                logs.insert(log);
+        
                 request.getRequestDispatcher("cadastrado.jsp").forward(request, response);
+                System.gc();
             }else{
                 request.setAttribute("erros",err);
             }
