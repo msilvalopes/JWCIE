@@ -32,7 +32,6 @@ public class excluir extends HttpServlet {
             throws ServletException, IOException {
         JWICEsession sessao = new JWICEsession(request, response);
         if (sessao.falhou()) {
-<<<<<<< HEAD
             System.gc();
             return;
         }
@@ -62,16 +61,6 @@ public class excluir extends HttpServlet {
             response.sendRedirect("/logado");
         }
         System.gc();
-=======
-            return;
-        }
-        DiretorioManager dir = new DiretorioManager(sessao.getUsuarioLogado().getLogin());
-        File arquivo = dir.getFile((String) request.getParameter("arquivo"));
-        if(arquivo.exists()){
-            arquivo.delete();
-            sessao.aviso("Arquivo apagado");
-        }
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
