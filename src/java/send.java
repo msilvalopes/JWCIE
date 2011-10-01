@@ -12,26 +12,12 @@ import manager.DiretorioManager;
 import manager.JWICEsession;
 import org.apache.commons.fileupload.*;
 import javax.servlet.Servlet;
-<<<<<<< HEAD
-=======
-import org.apache.commons.fileupload.FileItem;
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.*;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-<<<<<<< HEAD
 import java.io.IOException;
 import manager.ImagemGestor;
-=======
-import org.apache.commons.fileupload.DeferredFileOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Iterator;
-import java.util.List;
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
 
 /**
  *
@@ -65,7 +51,6 @@ public class send extends HttpServlet implements Servlet {
                     FileItemStream item = items.next();
                     if (!item.isFormField()) {
                         String novo = dir.add_file(item);
-<<<<<<< HEAD
                         ImagemGestor imagem;
                         try{
                             imagem = new ImagemGestor(dir.getFile((String)request.getParameter("arquivo")));
@@ -81,9 +66,6 @@ public class send extends HttpServlet implements Servlet {
                         }else
                             response.sendRedirect("/editar_arquivo?arquivo=".concat(novo));
                         return;
-=======
-                        response.sendRedirect("/editar?arquivo=".concat(novo));
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
                     }
                 }
 

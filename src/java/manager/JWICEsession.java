@@ -16,17 +16,11 @@ import javax.servlet.http.HttpSession;
 public class JWICEsession {
     private Usuarios usuario_logado;
     private HttpSession session;
-<<<<<<< HEAD
     private HttpServletRequest requisicao;
     public JWICEsession(HttpServletRequest requisicao,HttpServletResponse resposta) throws IOException {
         this.requisicao = requisicao;
         session = requisicao.getSession(true);
         session.setMaxInactiveInterval(1000);
-=======
-    public JWICEsession(HttpServletRequest requisicao,HttpServletResponse resposta) throws IOException {
-        session = requisicao.getSession(true);
-        session.setMaxInactiveInterval(100);
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
         if(null== session.getAttribute("logado")||
            !(Boolean) session.getAttribute("logado")){
             String login = (String) requisicao.getParameter("login");
@@ -36,10 +30,7 @@ public class JWICEsession {
                 session.setAttribute("logado",true);
                 session.setAttribute("login",login);
                 session.setAttribute("senha",senha);
-<<<<<<< HEAD
                 session.setAttribute("mensagem","");
-=======
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
             }else{
                 resposta.sendRedirect("/");
             }
@@ -84,7 +75,6 @@ public class JWICEsession {
     public void alterar_senha(String senha){
         session.setAttribute("senha",senha);
     }
-<<<<<<< HEAD
     public void setAviso(String mensagem){
         session.setAttribute("mensagem",
             ((String)session.getAttribute("mensagem")).concat("<br>".concat(mensagem)));
@@ -109,6 +99,4 @@ public class JWICEsession {
     
     
     
-=======
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
 }

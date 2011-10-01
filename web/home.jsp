@@ -36,7 +36,7 @@
                 <tr>
                     <td><img src="/imagem?arquivo=${imagem}" style="max-height: 100px"> </td>
                     <td><a href="/editar_arquivo?arquivo=${imagem}">Editar essa imagem</a></td>
-                    <td><a href="/editar_copia?arquivo=${imagem}">Editar uma copia dessa imagem</a></td>
+                    <td><a href="/copiar_editar?arquivo=${imagem}">Editar uma copia dessa imagem</a></td>
                     <td><a href="/excluir?arquivo=${imagem}" onclick="return confirm('Mesmo?')">Apagar Essa imagem</a></td>
 
                 </tr>

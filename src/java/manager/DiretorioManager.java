@@ -7,25 +7,13 @@ package manager;
 //import ;
 //import java.io.FilePermission;
 //import com.sun.org.apache.xerces.internal.xs.StringList;
-<<<<<<< HEAD
-=======
-import java.awt.event.InputEvent;
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-<<<<<<< HEAD
 import java.util.Vector;
-=======
-import java.util.List;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.apache.commons.fileupload.FileItem;
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
 import org.apache.commons.fileupload.FileItemStream;
 
 /**
@@ -36,46 +24,30 @@ public final class DiretorioManager extends File {
 
     public DiretorioManager(String pathname) {
         super("d:/imagens/".concat(pathname).concat("/"));
-<<<<<<< HEAD
         System.gc();
     }
 
     public void preparar() {
         System.gc();
-=======
-    }
-
-    public void preparar() {
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
         this.mkdirs();
     }
 
     public void eliminar_diretorio() {
-<<<<<<< HEAD
         System.gc();
-=======
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
         if (!this.canWrite()) {
             return;
         }
         File[] arquivos = this.listFiles();
         for (int i = 0; i < arquivos.length; i++) {
-<<<<<<< HEAD
             System.gc();
             arquivos[i].delete();
             System.gc();
         }
         System.gc();
-=======
-            arquivos[i].delete();
-        }
-
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
         this.delete();
 
 
     }
-<<<<<<< HEAD
     public String add_file(FileInputStream item,String original) throws FileNotFoundException, IOException {
         System.gc();
         String nome = this.getNewName(original);
@@ -96,11 +68,6 @@ public final class DiretorioManager extends File {
 
     public String add_file(FileItemStream item) throws FileNotFoundException, IOException {
         System.gc();
-=======
-
-    public String add_file(FileItemStream item) throws FileNotFoundException, IOException {
-
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
         String nome = this.getNewName(item.getName());
 
 
@@ -117,10 +84,7 @@ public final class DiretorioManager extends File {
         }
         output.flush();
         output.close();
-<<<<<<< HEAD
         
-=======
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
         return nome;
     }
 
@@ -172,7 +136,6 @@ public final class DiretorioManager extends File {
         return "d:/imagens/";
     }
 
-<<<<<<< HEAD
     public File getFile(String nome) {
         File file = null;
         try{
@@ -199,10 +162,6 @@ public final class DiretorioManager extends File {
     public boolean deleteFile(String arquivo) {
         System.gc();
         return getFile(arquivo).delete();
-=======
-    public File getFile(String string) {
-        throw new UnsupportedOperationException("Not yet implemented");
->>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
     }
 }
 
