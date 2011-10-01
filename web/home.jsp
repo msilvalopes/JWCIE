@@ -15,7 +15,10 @@
     <body>
         <h1>Logado!</h1>
         <h2>Olá, ${usuarionome}</h2>
+<<<<<<< HEAD
         <h3>${aviso}</h3>
+=======
+>>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
         <ul>
             <li><a href="/logado">Recarregar essa pagina</a></li>
             <li><a href="/send">Enviar imagem</a></li>
@@ -35,8 +38,13 @@
                 %>
                 <tr>
                     <td><img src="/imagem?arquivo=${imagem}" style="max-height: 100px"> </td>
+<<<<<<< HEAD
                     <td><a href="/editar_arquivo?arquivo=${imagem}">Editar essa imagem</a></td>
                     <td><a href="/copiar_editar?arquivo=${imagem}">Editar uma copia dessa imagem</a></td>
+=======
+                    <td><a href="/editar?arquivo=${imagem}">Editar essa imagem</a></td>
+                    <td><a href="/editar_copia?arquivo=${imagem}">Editar uma copia dessa imagem</a></td>
+>>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
                     <td><a href="/excluir?arquivo=${imagem}" onclick="return confirm('Mesmo?')">Apagar Essa imagem</a></td>
 
                 </tr>

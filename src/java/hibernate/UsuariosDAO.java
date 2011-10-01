@@ -32,6 +32,7 @@ public class UsuariosDAO {
         propriedades.setProperty("hibernate.connection.username", "root");
         propriedades.setProperty("hibernate.connection.password", "");
         //propriedades.setProperty("Usuarios.hbm.xml"/>
+<<<<<<< HEAD
         try{
             factory = new Configuration().addProperties(propriedades).
                           addClass(hibernate.Usuarios.class).buildSessionFactory();
@@ -40,6 +41,10 @@ public class UsuariosDAO {
             return;
         }
     
+=======
+        factory = new Configuration().addProperties(propriedades).addClass(hibernate.Usuarios.class).buildSessionFactory();
+
+>>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
     }
 
     public Vector validate_insert(Usuarios usuario) {

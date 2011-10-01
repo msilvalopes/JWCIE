@@ -36,7 +36,11 @@ public class logado extends HttpServlet {
       DiretorioManager dir = new DiretorioManager(sessao.getUsuarioLogado().getLogin());
       Vector imagens = dir.getListagem();
       request.setAttribute("imagens", imagens);
+<<<<<<< HEAD
       sessao.sendAviso();
+=======
+      
+>>>>>>> f0bc1aced80f6d1ffb291569aa0233f0b1ffeab8
       request.setAttribute("usuarionome", sessao.getUsuarioLogado().getNome());
       request.getRequestDispatcher("home.jsp").forward(request, response);
     }
