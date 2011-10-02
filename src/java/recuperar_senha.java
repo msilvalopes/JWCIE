@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import manager.MailSender;
 import manager.Utils;
 
 /**
@@ -29,7 +30,7 @@ public class recuperar_senha extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, Exception {
         String login = (String)request.getParameter("login");
         if(login!=null&&!("".equals(login))){
             System.gc();
@@ -39,13 +40,15 @@ public class recuperar_senha extends HttpServlet {
             List usuarios = dao.find_usuario_by_login(usu);
             if(!usuarios.isEmpty()){
                 usu = (Usuarios)usuarios.get(0);
-                System.out.print("asd");
                 String senha = Utils.get_random_password();
                 usu.setarSenha(senha);
+                System.out.print(usu.getEmail());
                 
-                MailSender.postMail("Sua nova senha é: '".concat(senha).concat("' (sem aspas)"),
+                MailSender mail = new MailSender();
+                mail.postMail("Sua nova senha é: '".concat(senha).concat("' (sem aspas)"),
                                     usu.getEmail(),
-                                    "Nova Senha do JWICE");
+                                    "Nova Senha do JWICE do user ".concat(usu.getLogin()));
+                System.out.print(usu.getEmail());
                 dao.update(usu);
                 request.setAttribute("erros", "Sua senha será enviada por email - ".concat(senha));
             }else{
@@ -70,7 +73,11 @@ public class recuperar_senha extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try{
+            processRequest(request, response);
+        }catch(Exception e){
+            return;
+        }
     }
 
     /** 
@@ -83,7 +90,11 @@ public class recuperar_senha extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try{
+            processRequest(request, response);
+        }catch(Exception e){
+            System.out.print(e.getMessage());
+        }
     }
 
     /** 
