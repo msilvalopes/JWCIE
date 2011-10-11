@@ -18,7 +18,7 @@
     <body>
         <div id="topo">
             <div id="logo">
-                <img src="imagens/logo.png" alt="jwcie" />
+                <img src="imagens/logo.png" alt="Logo" />
                 <span>jwice</span>
             </div>
             <div id="login2">
@@ -58,7 +58,7 @@
                 </div>
                 <div id="edite" class="box" >
                     <div class="titulo">Edite</div>
-                    <img src="imagens/edit_logo.png" alt="criar" />
+                    <img src="imagens/edit_logo.png" alt="editar" />
                     <p>Edite e aplique efeitos em suas fotos. Mostre que além de 
                         fotogênico você é um verdadeiro artista.</p>
                     <div id="comeceagora">
@@ -67,7 +67,7 @@
                 </div>
                 <div id="compartilhe" class="box">
                     <div class="titulo">Compartilhe</div>
-                    <img src="imagens/share_logo.png" alt="criar" />
+                    <img src="imagens/share_logo.png" alt="Compartilhe" />
                     <p>Compartilhe suas imagens com seus amigos. Compartilhe seus 
                         momentos.</p>
                     <div id="comeceagora">

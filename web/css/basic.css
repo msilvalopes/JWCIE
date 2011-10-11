@@ -1,0 +1,287 @@
+/* 
+    Document   : basic
+    Created on : 02/10/2011, 12:06:08
+    Author     : Márcio Dias
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    top:0;
+    left:0;
+}
+
+#topo{
+    top:0;
+    left:0;
+    width:100%;
+    height:45px;
+    background:#666666;
+    color: #ffffff;
+    font-size:20pt;
+    font-family:"Segoe UI";
+    position:absolute;
+    font-weight:bold;
+    display:inline;
+}
+#logo{
+    width:150px;
+    float:left;
+    margin-left: 50px;
+}
+#logo img{
+    vertical-align: middle;
+}
+
+#signup{
+    font-size:10pt;
+    float:right;
+    border-left:#cccccc solid 1px;
+    border-right:#cccccc solid 1px;
+    height:35px;
+    width:140px;
+    padding-top:10px;
+}
+
+#signup img{
+    vertical-align:middle;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+#signup a{
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:normal;
+}
+
+#login{
+    font-size:10pt;
+    float:right;
+    border-right:#cccccc solid 1px;
+    height:35px;
+    width:100px;
+    padding-top:10px;
+}
+
+#login img{
+    vertical-align:middle;
+    margin-left:10px;
+    margin-right:10px; 
+}
+
+#login a{
+    color:#ffffff;
+    text-decoration:none;
+    font-weight:normal;
+}
+
+#login2{
+    font-size:9pt;
+    float:right;
+    border-right:#cccccc solid 1px;
+    height:35px;
+    width:470px;
+    padding-top:10px;
+    font-weight:normal;
+    display:none;
+}
+
+#login2 form{
+    margin-left:10px;
+    margin-right:10px;
+}
+
+#login2 input{
+    border:none;
+}
+
+#login2 #btLogin{
+    border:1px #cccccc solid;
+    background: #666666;
+    color:#ffffff;
+}
+
+#conteudo{
+    top:45px;
+    left:0;
+    width:100%;
+    position:absolute;
+}
+
+#conteudo #welcome{
+    height:300px;
+    width:100%;
+    overflow: hidden;
+}
+
+#welcome img{
+    width:100%;
+}
+
+#comofunciona{
+    margin-left: 5%;
+    
+}
+
+#crie .titulo{
+    background:#00ff00;
+}
+
+#edite .titulo{
+    background:#ff00aa;
+}
+
+#compartilhe .titulo{
+    background: #ff9900;
+}
+
+#comeceagora{
+    width:100%;
+    margin-top: 30px;
+    margin-bottom:0;
+    text-align:right;
+    position:static;
+}
+
+
+#crie input{
+    background:#00ff00;
+    font-family:"Segoe UI";
+    color: #ffffff;
+    border: 1px #cccccc solid;
+    height:40px;
+    width:175px;
+    margin-right: 20px;    
+    cursor: pointer;
+}
+
+#edite input{
+    background:#ff00aa;
+    font-family:"Segoe UI";
+    color: #ffffff;
+    border: 1px #cccccc solid;
+    height:40px;
+    width:175px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+#compartilhe input{
+    background:#ff9900;
+    font-family:"Segoe UI";
+    color: #ffffff;
+    border: 1px #cccccc solid;
+    height:40px;
+    width:175px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+#rodape{
+    left:0;
+    right:0;
+    background:#666666;
+    font-family:"Segoe UI";
+    font-size: 8pt;
+    color:#ffffff;
+    width:100%;
+    clear:both;
+}
+
+#rodape p{
+    margin-left: 40px;
+}
+
+#conteudo h1{
+    margin-top:0px;
+    font-family:"Segoe UI";
+    font-weight: normal;
+    width:90%;
+    height:60px;
+    background:#dddddd;
+    color:#ffffff;
+    padding-left:10%;
+}
+
+#form_cad{
+    width:300px;
+    font-family: "Segoe UI";
+    color:#666666;
+    font-size:9pt;
+    margin-left:35%;
+    border:1px solid #666666;
+    padding: 20px 20px 20px 20px;
+    margin-top: 100px;
+}
+
+#form_cad input{
+    border:#666666 1px solid;
+    color: #000000;
+}
+
+#form_cad div{
+    text-align:right;
+}
+
+#form_cad h2{
+    font-family: "Segoe UI";
+    color: #ff0000;
+    font-size: 9pt;
+    background: #ffffcc;
+}
+
+#form_cad .submit{
+    border:#666666 1px solid;
+    width: 75px;
+    height:25px;
+    background:#0055ff;
+    color:#ffffff;
+}
+/*classes*/
+.box{
+    width:30%;
+    border:#dddddd 1px solid;
+    margin-left: 5px;
+    margin-right:5px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    float:left;
+    color:#666666;
+    font-size:10pt;
+    height: 300px;
+}
+
+.box p{
+    margin-left: 20px;
+    margin-right:20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: "Segoe UI";
+    text-align: justify;
+    height:140px;
+}
+
+.box img{
+    float: left;
+    margin-right:20px;
+    margin-top: 20px;
+}
+
+.titulo{
+    color: #ffffff;
+    height:40px;
+    width:100%;
+    text-align:center;
+    font-size:16pt;
+    font-family:"Segoe UI";
+}

@@ -65,9 +65,15 @@
                                 <td>Senha:</td>
                                 <td><input name="senha" type="password"></td>
                             </tr>
+                            
                             <tr>
                                 <td>Confirme sua senha:</td>
                                 <td><input name="confsenha" type="password"></td>
+                            </tr>
+                            <tr>
+                                <td><a href="/termos" target="_blank">Termos de uso</a></td>
+                                <td><label><input type="checkbox" name="termosdeuso">Eu li e aceito os termos de uso</td>
+                                
                             </tr>
                             <tr>
                                 <td colspan="2">
@@ -78,8 +84,9 @@
                             </tr>
                         </tbody>
                     </table>
-                        
+                    
                 </form>
+                <a href="/">Voltar</a>
             </div>
         </div>
     </body>
